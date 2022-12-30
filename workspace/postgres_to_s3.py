@@ -4,7 +4,6 @@ from datetime import date
 
 today = date.today().strftime("%b-%d-%Y")
 
-
 AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
 AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
 AWS_S3_ENDPOINT = os.getenv("AWS_S3_ENDPOINT")
@@ -34,8 +33,7 @@ spark = SparkSession.builder \
 
 spark.sparkContext.setLogLevel("ERROR")
 
-tables_names = ['Part_in_Order', 'Supplier', 'Brand', 'Part', 'Part_for_Car', 'Part_Supplier', \
-               'Customer', 'Customer_Statut', 'Orders', 'Car_Manufacturer', 'Car', 'Part_Maker']
+tables_names = ['blabla', 't_demo']
 
 postgres_url= f"jdbc:postgresql://{POSTGRES_ENDPOINT}/{POSTGRES_DB}"
 
@@ -53,5 +51,9 @@ for table_name in tables_names:
     .write \
     .format("delta")\
     .mode("overwrite")\
-    .save(f"s3a://{AWS_BUCKET_NAME}/bronze/CarPartsDB/{today}/{table_name}")
+    .save(f"s3a://{AWS_BUCKET_NAME}/bronze/bioclouddb/{today}/{table_name}")
     print(f"{table_name} table done!")
+
+    spark.read.format("delta").load(f"s3a://{AWS_BUCKET_NAME}/bronze/bioclouddb/{today}/{table_name}").show()
+
+
