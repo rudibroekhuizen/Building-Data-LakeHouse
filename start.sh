@@ -10,3 +10,7 @@ docker compose up -d
 
 echo -e "Setup Minio"
 docker compose exec minio bash '/opt/scripts/setup.sh'
+
+echo -e "Download psql jar"
+docker exec -it master bash /opt/workspace/dependencies/packages_installer.sh 
+
