@@ -45,7 +45,31 @@ docker exec -it master spark-submit --master spark://master:7077 \
         --executor-cores 8 \
         /opt/workspace/clean_data.py
 ```
-## links
+Query using spark-sql
+```bash
+docker compose exec spark-master bash
+```
+```
+spark-sql \
+--conf spark.hadoop.fs.s3a.endpoint=http://minio:9000 \
+--conf spark.hadoop.fs.s3a.access.key=admin \
+--conf spark.hadoop.fs.s3a.secret.key=123456789 \
+--conf spark.hadoop.fs.s3a.path.style.access=true \
+--conf spark.sql.warehouse.dir=s3a://datalake/warehouse/ \
+--conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem \
+--conf hive.metastore.uris=thrift://hive-metastore:9083 \
+--conf spark.hadoop.metastore.catalog.default=hive \
+--conf spark.sql.catalogImplementation=hive \
+--conf spark.hadoop.fs.s3.impl=org.apache.hadoop.fs.s3a.S3AFileSystem \
+--conf spark.hadoop.fs.s3a.connection.ssl.enabled=false \
+--packages io.delta:delta-core_2.12:1.0.0 \
+--conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" \
+--conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog"
+```
+```
+SELECT * FROM delta.`s3a://datalake/bronze/bioclouddb/Dec-30-2022/t_demo` limit 10;
+```
+## Links
 - **Spark master UI:**    http://localhost:9090
 - **Spark worker a UI:**  http://localhost:9091
 - **Spark worker b UI:**  http://localhost:9092
