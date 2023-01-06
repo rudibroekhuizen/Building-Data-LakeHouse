@@ -2,7 +2,7 @@
 
 set -eux -o pipefail
 
-mc alias set deltalake http://localhost:9000 admin 123456789
-mc admin service restart deltalake
+mc alias set biocloud http://localhost:9000 admin 123456789
+mc admin service restart biocloud
 
-mc mb deltalake/biocloud
+mc mb biocloud/deltalake

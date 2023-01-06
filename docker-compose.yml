@@ -61,9 +61,8 @@ services:
         - ./workspace:/opt/workspace
 
   minio:
-    image: quay.io/minio/minio
+    image: bitnami/minio:latest
     container_name: minio
-    restart: always
     environment:
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=123456789
@@ -83,7 +82,6 @@ services:
   db:
     image: postgres:14.2
     container_name: postgres
-    restart: always
     volumes:
       - ./database-data:/var/lib/postgresql/data/
     environment:
