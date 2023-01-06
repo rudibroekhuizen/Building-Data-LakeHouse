@@ -11,17 +11,10 @@ This project aims also to create an Extract, Load, and Transform (ELT) pipeline 
 
 
 ## Setup
-- First, build Spark and Presto docker image
+- Run script
 ```bash
-docker build -t presto:0.272.1 ./Dockerfiles/presto
-docker build -t cluster-apache-spark:3.1.1 Dockerfiles/spark
+./start.sh
 ```
-- Run docker compose
-```bash
-docker-compose up
-```
-
-- Create a bucket in [minio](http://localhost:9001) to store our data (name it datalake)
 
 - Create a Postgres database (name it CarParts and use CarParts.sql file to create tables)
 - Install jar files needed for our spark project
@@ -70,11 +63,11 @@ spark-sql \
 SELECT * FROM delta.`s3a://datalake/bronze/bioclouddb/Dec-30-2022/t_demo` limit 10;
 ```
 ## Links
-- **Spark master UI:**    http://localhost:9090
-- **Spark worker a UI:**  http://localhost:9091
-- **Spark worker b UI:**  http://localhost:9092
-- **Minio:**  http://localhost:9001
-- **Presto:** http://localhost:8000
+- Spark master UI: http://localhost:9090
+- Spark worker a UI: http://localhost:9091
+- Spark worker b UI: http://localhost:9092
+- Minio: http://localhost:9001
+- Presto: http://localhost:8000
 
 ## Built With
 
