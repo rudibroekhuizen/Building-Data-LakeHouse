@@ -17,7 +17,6 @@ This project aims also to create an Extract, Load, and Transform (ELT) pipeline 
 ```
 
 - Create a Postgres database (name it CarParts and use CarParts.sql file to create tables)
-- Install jar files needed for our spark project
 
 - Run the first script
 ```bash
