@@ -18,9 +18,7 @@ This project aims also to create an Extract, Load, and Transform (ELT) pipeline 
 
 - Create a Postgres database (name it CarParts and use CarParts.sql file to create tables)
 - Install jar files needed for our spark project
-```bash
-docker exec -it master bash /opt/workspace/dependencies/packages_installer.sh 
-```
+
 - Run the first script
 ```bash
 docker exec -it master spark-submit --master spark://master:7077 \
