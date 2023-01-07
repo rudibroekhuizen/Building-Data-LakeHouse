@@ -10,17 +10,18 @@ This project aims also to create an Extract, Load, and Transform (ELT) pipeline 
 ![Architecture](/images/1.png "Architecture")
 
 
-## Setup
+## Start
 - Run script
 ```bash
 ./start.sh
 ```
 
-- Sync PostgreSQL to Delta/S3
+### Sync PostgreSQL to Delta/S3
 ```bash
 docker compose exec spark-master spark-submit /opt/workspace/postgres_to_s3.py
 ```
-- Doesn't work for now, error `py4j.protocol.Py4JJavaError: An error occurred while calling o75.save.`
+
+### Doesn't work for now, error `py4j.protocol.Py4JJavaError: An error occurred while calling o75.save.`
 ```bash
 docker compose exec spark-master spark-submit --master spark://master:7077 \
     --deploy-mode cluster \
@@ -29,12 +30,12 @@ docker compose exec spark-master spark-submit --master spark://master:7077 \
     /opt/workspace/postgres_to_s3.py
 ```
 
-- Cleanup
+### Cleanup
 ```
 docker compose exec spark-master spark-submit /opt/workspace/clean_data.py
 ```
 
-- Doesn't work for now, error `py4j.protocol.Py4JJavaError: An error occurred while calling o75.save.`
+### Doesn't work for now, error `py4j.protocol.Py4JJavaError: An error occurred while calling o75.save.`
 ```bash
 docker exec -it master spark-submit --master spark://master:7077 \
     --deploy-mode cluster \
@@ -43,7 +44,7 @@ docker exec -it master spark-submit --master spark://master:7077 \
     /opt/workspace/clean_data.py
 ```
 
-Query using spark-sql
+### Query using spark-sql
 ```bash
 docker compose exec spark-master bash
 ```
@@ -68,7 +69,7 @@ spark-sql \
 SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/bird` limit 10;
 ```
 
-## Links
+### Links
 - Spark master UI: http://localhost:9090
 - Spark worker a UI: http://localhost:9091
 - Spark worker b UI: http://localhost:9092
@@ -76,7 +77,7 @@ SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/bird` limit 10;
 - Presto: http://localhost:8000
 
 
-## Built With
+### Built With
 
 - Spark
 - Minio
@@ -86,7 +87,7 @@ SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/bird` limit 10;
 - Delta Lake
 
 
-## Author
+### Author
 
 **Youssef EL ASERY**
 
@@ -95,7 +96,7 @@ SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/bird` limit 10;
 - [Kaggle](https://www.kaggle.com/youssefelasery "Welcome")
 
 
-## 🤝 Support
+### 🤝 Support
 
 Contributions, issues, and feature requests are welcome!
 
