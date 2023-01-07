@@ -69,7 +69,7 @@ spark-sql \
 SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/bird` limit 10;
 ```
 
-### Links
+## Links
 - Spark master UI: http://localhost:9090
 - Spark worker a UI: http://localhost:9091
 - Spark worker b UI: http://localhost:9092
@@ -77,7 +77,7 @@ SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/bird` limit 10;
 - Presto: http://localhost:8000
 
 
-### Built With
+## Built With
 
 - Spark
 - Minio
@@ -87,7 +87,7 @@ SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/bird` limit 10;
 - Delta Lake
 
 
-### Author
+## Author
 
 **Youssef EL ASERY**
 
@@ -96,7 +96,7 @@ SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/bird` limit 10;
 - [Kaggle](https://www.kaggle.com/youssefelasery "Welcome")
 
 
-### 🤝 Support
+## 🤝 Support
 
 Contributions, issues, and feature requests are welcome!
 
