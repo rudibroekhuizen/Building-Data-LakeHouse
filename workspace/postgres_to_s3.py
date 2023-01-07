@@ -33,7 +33,7 @@ spark = SparkSession.builder \
 
 spark.sparkContext.setLogLevel("ERROR")
 
-tables_names = ['blabla', 't_demo']
+tables_names = ['bird', 'bat']
 
 postgres_url= f"jdbc:postgresql://{POSTGRES_ENDPOINT}/{POSTGRES_DB}"
 
