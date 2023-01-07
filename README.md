@@ -10,37 +10,33 @@ This project aims also to create an Extract, Load, and Transform (ELT) pipeline 
 ![Architecture](/images/1.png "Architecture")
 
 
-## Start
+## How to use
+
+### Start containers and run scripts
 ```bash
 ./start.sh
 ```
 
 ### Sync PostgreSQL to Delta/S3
 ```bash
-docker compose exec spark-master spark-submit /opt/workspace/postgres_to_s3.py
+docker compose exec spark-master spark-submit --master spark://master:7077 \
+  --executor-memory 5G \
+  --executor-cores 8 \
+  /opt/workspace/postgres_to_s3.py
 ```
 
-### Doesn't work for now, error `py4j.protocol.Py4JJavaError: An error occurred while calling o75.save.`
+Option --deploy-mode cluster doesn't work, error `Cluster deploy mode is currently not supported for python applications on standalone clusters.`
 ```bash
 docker compose exec spark-master spark-submit --master spark://master:7077 \
-    --deploy-mode cluster \
-    --executor-memory 5G \
-    --executor-cores 8 \
-    /opt/workspace/postgres_to_s3.py
+  --deploy-mode cluster \
+  --executor-memory 5G \
+  --executor-cores 8 \
+  /opt/workspace/postgres_to_s3.py
 ```
 
 ### Cleanup
 ```
 docker compose exec spark-master spark-submit /opt/workspace/clean_data.py
-```
-
-### Doesn't work for now, error `py4j.protocol.Py4JJavaError: An error occurred while calling o75.save.`
-```bash
-docker compose exec spark-master spark-submit --master spark://master:7077 \
-    --deploy-mode cluster \
-    --executor-memory 5G \
-    --executor-cores 8 \
-    /opt/workspace/clean_data.py
 ```
 
 ### Query using spark-sql
