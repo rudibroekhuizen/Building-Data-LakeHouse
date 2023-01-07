@@ -40,6 +40,11 @@ touch $SPARK_WORKER_LOG && \
 ln -sf /dev/stdout $SPARK_MASTER_LOG && \
 ln -sf /dev/stdout $SPARK_WORKER_LOG
 
+RUN wget --no-verbose -P /opt/spark/jars https://repo1.maven.org/maven2/io/delta/delta-core_2.12/1.0.1/delta-core_2.12-1.0.1.jar && \
+wget --no-verbose -P /opt/spark/jars https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.2.0/hadoop-aws-3.2.0.jar && \
+wget --no-verbose -P /opt/spark/jars https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.375/aws-java-sdk-bundle-1.11.375.jar && \
+wget --no-verbose -P /opt/spark/jars https://jdbc.postgresql.org/download/postgresql-42.3.5.jar
+
 ENV PATH /opt/spark/bin:/opt/spark/sbin:$PATH
 
 COPY start-spark.sh /

@@ -11,6 +11,4 @@ docker compose up -d
 echo -e "Setup Minio..."
 docker compose exec minio bash '/opt/scripts/setup.sh'
 
-echo -e "Install jar files needed for our spark project.."
-docker exec -it master bash /opt/workspace/dependencies/packages_installer.sh 
 
