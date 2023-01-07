@@ -16,8 +16,6 @@ This project aims also to create an Extract, Load, and Transform (ELT) pipeline 
 ./start.sh
 ```
 
-- Create a Postgres database (name it CarParts and use CarParts.sql file to create tables)
-
 - Run the first script
 ```bash
 docker exec -it master spark-submit --master spark://master:7077 \
@@ -59,12 +57,14 @@ spark-sql \
 ```
 SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/bird` limit 10;
 ```
+
 ## Links
 - Spark master UI: http://localhost:9090
 - Spark worker a UI: http://localhost:9091
 - Spark worker b UI: http://localhost:9092
 - Minio: http://localhost:9001
 - Presto: http://localhost:8000
+
 
 ## Built With
 
