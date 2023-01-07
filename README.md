@@ -80,7 +80,7 @@ SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/bird` limit 10;
 
 
 ## Todo
-- [] Update Dockerfile spark: https://github.com/rudibroekhuizen/docker-spark-cluster/blob/master/Dockerfile
+- [ ] Update Dockerfile spark: https://github.com/rudibroekhuizen/docker-spark-cluster/blob/master/Dockerfile
 
 
 ## Author
