@@ -37,7 +37,7 @@ docker compose exec spark-master spark-submit /opt/workspace/clean_data.py
 
 ### Doesn't work for now, error `py4j.protocol.Py4JJavaError: An error occurred while calling o75.save.`
 ```bash
-docker exec -it master spark-submit --master spark://master:7077 \
+docker compose exec spark-master spark-submit --master spark://master:7077 \
     --deploy-mode cluster \
     --executor-memory 5G \
     --executor-cores 8 \
