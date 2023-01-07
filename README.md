@@ -16,23 +16,33 @@ This project aims also to create an Extract, Load, and Transform (ELT) pipeline 
 ./start.sh
 ```
 
-- Run the first script
+- Sync PostgreSQL to Delta/S3
 ```bash
-docker exec -it master spark-submit --master spark://master:7077 \
-        --deploy-mode cluster \
-        --executor-memory 5G \
-        --executor-cores 8 \
-        /opt/workspace/postgres_to_s3.py
+docker compose exec spark-master spark-submit /opt/workspace/postgres_to_s3.py
+```
+- Doesn't work for now, error `py4j.protocol.Py4JJavaError: An error occurred while calling o75.save.`
+```bash
+docker compose exec spark-master spark-submit --master spark://master:7077 \
+    --deploy-mode cluster \
+    --executor-memory 5G \
+    --executor-cores 8 \
+    /opt/workspace/postgres_to_s3.py
 ```
 
-- Run the second script
+- Cleanup
+```
+docker compose exec spark-master spark-submit /opt/workspace/clean_data.py
+```
+
+- Doesn't work for now, error `py4j.protocol.Py4JJavaError: An error occurred while calling o75.save.`
 ```bash
 docker exec -it master spark-submit --master spark://master:7077 \
-        --deploy-mode cluster \
-        --executor-memory 5G \
-        --executor-cores 8 \
-        /opt/workspace/clean_data.py
+    --deploy-mode cluster \
+    --executor-memory 5G \
+    --executor-cores 8 \
+    /opt/workspace/clean_data.py
 ```
+
 Query using spark-sql
 ```bash
 docker compose exec spark-master bash
@@ -50,7 +60,7 @@ spark-sql \
 --conf spark.sql.catalogImplementation=hive \
 --conf spark.hadoop.fs.s3.impl=org.apache.hadoop.fs.s3a.S3AFileSystem \
 --conf spark.hadoop.fs.s3a.connection.ssl.enabled=false \
---packages io.delta:delta-core_2.12:1.0.0 \
+--packages io.delta:delta-core_2.12:1.0.1 \
 --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" \
 --conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog"
 ```
