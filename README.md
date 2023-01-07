@@ -11,7 +11,6 @@ This project aims also to create an Extract, Load, and Transform (ELT) pipeline 
 
 
 ## Start
-- Run script
 ```bash
 ./start.sh
 ```
