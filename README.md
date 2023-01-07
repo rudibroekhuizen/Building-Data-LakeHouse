@@ -57,7 +57,7 @@ spark-sql \
 --conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog"
 ```
 ```
-SELECT * FROM delta.`s3a://deltalake/bronze/bioclouddb/Dec-30-2022/t_demo` limit 10;
+SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/test_table` limit 10;
 ```
 ## Links
 - Spark master UI: http://localhost:9090

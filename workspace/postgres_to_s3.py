@@ -51,9 +51,9 @@ for table_name in tables_names:
     .write \
     .format("delta")\
     .mode("overwrite")\
-    .save(f"s3a://{AWS_BUCKET_NAME}/bronze/bioclouddb/{today}/{table_name}")
+    .save(f"s3a://{AWS_BUCKET_NAME}/bronze/test_db/{today}/{table_name}")
     print(f"{table_name} table done!")
 
-    spark.read.format("delta").load(f"s3a://{AWS_BUCKET_NAME}/bronze/bioclouddb/{today}/{table_name}").show()
+    spark.read.format("delta").load(f"s3a://{AWS_BUCKET_NAME}/bronze/test_db/{today}/{table_name}").show()
 
 

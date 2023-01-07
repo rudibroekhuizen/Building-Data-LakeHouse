@@ -81,15 +81,16 @@ services:
 
   postgres:
     image: postgres:15
-    container_name: postgres
-    volumes:
-      - ./database-data:/var/lib/postgresql/data/
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: test_db
+    shm_size: 256M
     ports:
       - "5432:5432"
+    volumes:
+      - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./postgres/conf.d:/conf.d
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
   mariadb:
     image: mariadb:latest
