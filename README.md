@@ -21,6 +21,11 @@ This project aims also to create an Extract, Load, and Transform (ELT) pipeline 
 ```bash
 docker compose exec spark-master spark-submit /opt/workspace/postgres_to_s3.py
 ```
+Or
+```
+docker compose exec spark-master spark-submit --master spark://master:7077 \
+    /opt/workspace/postgres_to_s3.py
+```
 
 Option --deploy-mode cluster doesn't work, error `Cluster deploy mode is currently not supported for python applications on standalone clusters.`
 ```bash
