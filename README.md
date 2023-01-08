@@ -86,7 +86,7 @@ SELECT * FROM delta.`s3a://deltalake/bronze/test_db/Dec-30-2022/bird` limit 10;
 
 ## Todo
 - [ ] Update Dockerfile spark: https://github.com/rudibroekhuizen/docker-spark-cluster/blob/master/Dockerfile
-
+- [ ] Try delete from s3 script: https://github.com/klescosia/aws-glue-delta-lake/blob/main/deletes.py
 
 ## Author
 
